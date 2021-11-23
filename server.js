@@ -1,5 +1,4 @@
 const express = require('express');
-const  mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const server = express();
@@ -8,18 +7,12 @@ const userAPI = require('./controller/user.controller')
 const staffAPI = require('./controller/staff-controller')
 const subjectAPI = require('./controller/subjects-controller')
 const authAPI = require('./controller/auth-controller');
-
+require('./api/db')
 // let Mongo = process.env.MongoURI
 server.use(express.json());
 const port = process.env.PORT || 5056;
 server.listen(port, ()=>{
     console.log(`Server connected on port ${port}` );
-
-    mongoose.connect("mongodb+srv://sammysoft:sammysoft@sammy-fyvl0.gcp.mongodb.net/MyDB?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(()=>{
-            console.log('Connected to DB....')
-        })
-        .catch(err => console.log('ERR ', err))
 })
 
 server.use(bodyParser.json())
