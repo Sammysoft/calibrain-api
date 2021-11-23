@@ -8,12 +8,9 @@ const staffAPI = require('./controller/staff-controller')
 const subjectAPI = require('./controller/subjects-controller')
 const authAPI = require('./controller/auth-controller');
 require('./api/db')
-let Mongo = process.env.MongoURI
+
 server.use(express.json());
-const port = process.env.PORT || 5056;
-server.listen(port, ()=>{
-    console.log(`Server connected on port ${port}` );
-})
+
 
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
@@ -25,3 +22,8 @@ server.use('/api', userAPI)
 server.use('/api', staffAPI)
 server.use('/api', subjectAPI)
 server.use('/api', authAPI)
+
+const port = process.env.PORT || 5056;
+server.listen(port, ()=>{
+    console.log(`Server connected on port ${port}` );
+})
