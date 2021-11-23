@@ -7,8 +7,7 @@ const userAPI = require('./controller/user.controller')
 const staffAPI = require('./controller/staff-controller')
 const subjectAPI = require('./controller/subjects-controller')
 const authAPI = require('./controller/auth-controller');
-require('./api/db')
-
+require('./api/db');
 server.use(express.json());
 
 
