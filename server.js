@@ -1,15 +1,15 @@
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const bodyParser = require('body-parser');
 const server = express();
-require('dotenv').config();
+// require('dotenv').config();
 const userAPI = require('./controller/user.controller')
 const staffAPI = require('./controller/staff-controller')
 const subjectAPI = require('./controller/subjects-controller')
 const authAPI = require('./controller/auth-controller');
-require('./api/db')
+// require('./api/db')
 // let Mongo = process.env.MongoURI
-server.use(express.json());
+// server.use(express.json());
 const port = process.env.PORT || 5056;
 server.listen(port, ()=>{
     console.log(`Server connected on port ${port}` );
