@@ -9,13 +9,13 @@ const staffAPI = require('./controller/staff-controller')
 const subjectAPI = require('./controller/subjects-controller')
 const authAPI = require('./controller/auth-controller');
 
-let Mongo = process.env.MongoURI
+// let Mongo = process.env.MongoURI
 server.use(express.json());
 const port = process.env.PORT || 5056;
 server.listen(port, ()=>{
     console.log(`Server connected on port ${port}` );
 
-    mongoose.connect(Mongo, { useNewUrlParser: true, useUnifiedTopology: true })
+    mongoose.connect("mongodb+srv://sammysoft:sammysoft@sammy-fyvl0.gcp.mongodb.net/MyDB?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
         .then(()=>{
             console.log('Connected to DB....')
         })
