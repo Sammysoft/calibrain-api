@@ -5,7 +5,7 @@ require('dotenv').config();
 
 module.exports = {
     _getUser: (req,res,next)=> {
-        User.find({category: req.body.category})
+        User.find()
             .then((result)=>{
                 res.json(result)
             })

@@ -9,7 +9,7 @@ const { verifyTokenAndAuth, verifyTokenAndAdmin } = require('../middleware/verif
 
 
 router.post('/postUser', verifyTokenAndAdmin, postUser._postUser);
-router.post('/getUser', getUser._getUser);
+router.get('/getUser', getUser._getUser);
 router.post('/updateUser/:id', verifyTokenAndAuth, updateUser._updateUser);
 router.post('/deleteUser/:id', verifyTokenAndAdmin, deleteUser._deleteUser);
 
