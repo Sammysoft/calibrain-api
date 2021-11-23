@@ -25,6 +25,9 @@ server.listen(port, ()=>{
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(cors());
+server.get('/', (req,res,next)=>{
+    res.status(200).json('Welcome To Calibrain RESTful API service...')
+});
 server.use('/api', userAPI)
 server.use('/api', staffAPI)
 server.use('/api', subjectAPI)
