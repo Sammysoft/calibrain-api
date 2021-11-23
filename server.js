@@ -11,7 +11,7 @@ const authAPI = require('./controller/auth-controller');
 
 let Mongo = process.env.MongoURI
 server.use(express.json());
-const port = process.env.PORT || 5055;
+const port = process.env.PORT || 5056;
 server.listen(port, ()=>{
     console.log(`Server connected on port ${port}` );
 
