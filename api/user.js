@@ -9,28 +9,28 @@ module.exports = {
             .then((result)=>{
                 res.json(result)
             })
-            .catch(err => res.status(400).json({global: 'Error occured'}))
+            .catch(err => res.status(400).json({errors: {global: 'Error occured'}}))
     },
 
     _postUser: async (req,res,next)=> {
      const { firstname, lastname, email, phonenumber, dateofbirth, category, house, post,  gender} = req.body.user;
         try{
             if(!firstname || !lastname || !email || !phonenumber || !dateofbirth || !category  || !gender ){
-                res.status(400).json({global: "Ensure all fields are entered"})
+                res.status(400).json({errors: {global: "Ensure all fields are entered"}})
             }else{
                 const user = await new User( req.body.user )
                 user.save()
                 res.status(200).json( user )
             }
         }catch(error){
-            res.status(400).json({global: 'Could not register'})
+            res.status(400).json({errors: {global: 'Could not register'}})
         }
 
     },
 
     _updateUser: async (req,res,next) => {
         if(req.body.password){
-            res.status(400).json({global: 'Sorry you cannot update password'})
+            res.status(400).json({errors: {global: 'Sorry you cannot update password'}})
         }
         if(!req.body.password)
            try {
@@ -50,10 +50,10 @@ module.exports = {
          User.findByIdAndDelete(req.params.id)
             .then(err => {
                 !err
-                    res.status(400).json({global: `You have rusticated ${userToBeDeleted.firstname} ${userToBeDeleted.lastname} from Calibrain!`})
+                    res.status(400).json({errors: {global: `You have rusticated ${userToBeDeleted.firstname} ${userToBeDeleted.lastname} from Calibrain!`}})
             })
             .catch(err=>{
-                res.status(200).json('Unable to delete')
+                res.status(200).json({errors: {global: 'Unable to delete'}})
             })
     }
 
