@@ -7,7 +7,7 @@ module.exports = {
     _getUser: (req,res,next)=> {
         User.find()
             .then((result)=>{
-                res.json(result)
+                res.status(200).json({result})
             })
             .catch(err => res.status(400).json({errors: {global: 'Error occured'}}))
     },
