@@ -20,7 +20,10 @@ module.exports = {
             }else{
                 const user = await new User( req.body.user )
                 user.save()
-                .then(data=> res.status(200).json(data))
+                res.status(200).json({user})
+                .catch(err=> {
+                    res.status(400).json({errors: {global: "Could not Register User"}})
+                })
             }
         }catch(error){
             res.status(400).json({errors: {global: 'Could not register'}})
