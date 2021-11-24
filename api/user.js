@@ -20,7 +20,15 @@ module.exports = {
             if(!firstname || !lastname || !email || !phonenumber || !dateofbirth || !category  || !gender || !imageuri ){
                 res.status(400).json({errors: {global: "Ensure all fields are entered"}})
             }else{
-                const user = await new Student( req.body )
+                const user = await new Student( )
+                user.firstname = firstname
+                user.lastname = lastname
+                user.email = email
+                user.phonenumber = phonenumber
+                user.dateofbirth = dateofbirth
+                user.category = category
+                user.imageuri = imageuri
+                user.gender = gender
                 console.log(user)
                 user.save()
                 res.status(200).json({user})

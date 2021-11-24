@@ -7,7 +7,7 @@ const studentSchema = new mongoose.Schema({
     phonenumber: {type: String, required: true},
     dateofbirth:{type: String, required: true},
     post:{type: String, default: 'Student'},
-    category:{type: String, required: true}, house:{type: String, required: true},
+    category:{type: String, required: true}, house:{type: String},
     imageuri:{type: String}, gender:{type: String},
     subjects:[String]
 });
