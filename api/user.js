@@ -9,28 +9,28 @@ module.exports = {
             .then((result)=>{
                 res.json(result)
             })
-            .catch(err => res.status(400).json('error occured..'))
+            .catch(err => res.status(400).json({global: 'Error occured'}))
     },
 
     _postUser: async (req,res,next)=> {
-     const { firstname, lastname, email, phonenumber, dateofbirth, category, house, subjects } = req.body;
+     const { firstname, lastname, email, phonenumber, dateofbirth, category, house, post,  gender} = req.body.user;
         try{
-            if(!firstname || !lastname || !email || !phonenumber || !dateofbirth || !category || !house || !subjects ){
-                res.status(400).json('Ensure all fields are entered')
+            if(!firstname || !lastname || !email || !phonenumber || !dateofbirth || !category  || !gender ){
+                res.status(400).json({global: "Ensure all fields are entered"})
             }else{
-                const user = await new User( req.body )
+                const user = await new User( req.body.user )
                 user.save()
                 res.status(200).json( user )
             }
         }catch(error){
-            res.status(400).json('Could not add ')
+            res.status(400).json({global: 'Could not register'})
         }
 
     },
 
     _updateUser: async (req,res,next) => {
         if(req.body.password){
-            res.status(400).json('Sorry you cannot update password')
+            res.status(400).json({global: 'Sorry you cannot update password'})
         }
         if(!req.body.password)
            try {
@@ -50,7 +50,7 @@ module.exports = {
          User.findByIdAndDelete(req.params.id)
             .then(err => {
                 !err
-                    res.status(400).json(`You have rusticated ${userToBeDeleted.firstname} ${userToBeDeleted.lastname} from Calibrain!`)
+                    res.status(400).json({global: `You have rusticated ${userToBeDeleted.firstname} ${userToBeDeleted.lastname} from Calibrain!`})
             })
             .catch(err=>{
                 res.status(200).json('Unable to delete')
