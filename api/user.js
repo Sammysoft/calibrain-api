@@ -1,44 +1,30 @@
 
-const User = require('../models/student-model');
+const Student= require('../models/student-model');
 const bcrypt = require('bcryptjs');
-const Student = require('../models/student-model');
 require('dotenv').config();
 
 module.exports = {
     _getUser: (req,res,next)=> {
         Student.find()
             .then((result)=>{
-                res.status(200).json({result})
+                res.json(result)
             })
-            .catch(err => res.status(400).json({errors: {global: 'Error occured'}}))
+            .catch(err => res.status(400).json({errors: {global: 'error occured..'}}))
     },
 
     _postUser: async (req,res,next)=> {
-        console.log(req.body)
-     const { firstname, lastname, email, phonenumber, dateofbirth, category, imageuri, gender} = req.body;
-        try{
-            if(!firstname || !lastname || !email || !phonenumber || !dateofbirth || !category  || !gender || !imageuri ){
-                res.status(400).json({errors: {global: "Ensure all fields are entered"}})
+     const { firstname, lastname, email, phonenumber, dateofbirth, category,  gender} = req.body.user;
+
+            if(!firstname || !lastname || !email || !phonenumber || !dateofbirth || !category  || !gender ){
+                res.status(400).json({errors : {global: 'Ensure all fields are entered'}})
             }else{
-                const user = await new Student( )
-                user.firstname = firstname
-                user.lastname = lastname
-                user.email = email
-                user.phonenumber = phonenumber
-                user.dateofbirth = dateofbirth
-                user.category = category
-                user.imageuri = imageuri
-                user.gender = gender
-                console.log(user)
+                const user =  new Student( req.body.user )
                 user.save()
-                res.status(200).json({user})
-                .catch(err=> {
-                    res.status(400).json({errors: {global: "Could not Register User"}})
-                })
+                console.log(user)
+                 res.status(200).json( {user} )
+                // .catch(err=> res.status(400).json({errors: {global: 'Couldn \'t resolve'}}))
             }
-        }catch(error){
-            res.status(400).json({errors: {global: 'Could not register'}})
-        }
+
 
     },
 
@@ -59,7 +45,7 @@ module.exports = {
     },
 
     _deleteUser:  async (req,res,next)=>{
-        const userToBeDeleted = await Student.findById(req.params.id);
+        const userToBeDeleted = await User.findById(req.params.id);
 
          Student.findByIdAndDelete(req.params.id)
             .then(err => {
