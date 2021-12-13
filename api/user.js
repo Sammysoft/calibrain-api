@@ -22,7 +22,7 @@ module.exports = {
                 user.save()
                 console.log(user)
                  res.status(200).json( {user} )
-                // .catch(err=> res.status(400).json({errors: {global: 'Couldn \'t resolve'}}))
+                 .catch(err=> res.status(400).json({errors: {global: 'Couldn \'t resolve'}}))
             }
 
 
