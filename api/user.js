@@ -4,8 +4,43 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
 module.exports = {
-    _getUser: (req,res,next)=> {
-        Student.find()
+    _getUser1: (req,res,next)=> {
+        Student.find({category: 'JSS1'})
+            .then((result)=>{
+                res.json(result)
+            })
+            .catch(err => res.status(400).json({errors: {global: 'error occured..'}}))
+    },
+    _getUser2: (req,res,next)=> {
+        Student.find({category: 'JSS2'})
+            .then((result)=>{
+                res.json(result)
+            })
+            .catch(err => res.status(400).json({errors: {global: 'error occured..'}}))
+    },
+    _getUser3: (req,res,next)=> {
+        Student.find({category: 'JSS3'})
+            .then((result)=>{
+                res.json(result)
+            })
+            .catch(err => res.status(400).json({errors: {global: 'error occured..'}}))
+    },
+    _getUser4: (req,res,next)=> {
+        Student.find({category: 'SSS1'})
+            .then((result)=>{
+                res.json(result)
+            })
+            .catch(err => res.status(400).json({errors: {global: 'error occured..'}}))
+    },
+    _getUser5: (req,res,next)=> {
+        Student.find({category: 'SSS2'})
+            .then((result)=>{
+                res.json(result)
+            })
+            .catch(err => res.status(400).json({errors: {global: 'error occured..'}}))
+    },
+    _getUser6: (req,res,next)=> {
+        Student.find({category: 'SSS3'})
             .then((result)=>{
                 res.json(result)
             })
