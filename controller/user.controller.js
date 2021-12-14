@@ -9,7 +9,7 @@ const { verifyTokenAndAuth, verifyTokenAndAdmin } = require('../middleware/verif
 
 
 router.post('/postUser', postUser._postUser);
-router.get('/getUserone', getUser._getUser1);
+router.get('/getUser1', getUser._getUser1);
 router.get('/getUser2', getUser._getUser2);
 router.get('/getUser3', getUser._getUser3);
 router.get('/getUser4', getUser._getUser4);
