@@ -6,7 +6,7 @@ const getAllStaffs = require('../api/staff');
 const getAStaff = require('../api/staff');
 const { verifyTokenAndAuth, verifyTokenAndAdmin } = require('../middleware/verifyToken')
 
-router.post('/addStaff',  addStaff._addStaff);
+router.post('/addStaff', verifyTokenAndAuth, verifyTokenAndAdmin,  addStaff._addStaff);
 router.post('/removeStaff/:id', verifyTokenAndAuth, verifyTokenAndAdmin, removeStaff._removeStaff);
 router.get('/getAllStaffs',  getAllStaffs._getAllStaffs);
 router.post('/getAStaff/:id', verifyTokenAndAuth, getAStaff._getAStaff)
